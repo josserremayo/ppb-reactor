@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
 
+ 
+  <!-- A VR PPB Reactor reconstruction by Sofia Lopez - Jose L. Rubio - D. Puyol - URJC-->
+ 
+  <head>
+    ...
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  </head>
+
+  <body>
+     <a-scene fog="type: exponential; color: #f4f2ff; density: 0.001; near: 0; far: 30">
+      
+      
+      
+      <!-- Environment -->
+
+      <a-sky src="https://cdn.glitch.global/3f50fabb-7353-4db5-b063-47a6601a610d/prueba_fondo%20(5).png?v=1725723699696" rotation="0 0 0"></a-sky>
+
+      <!-- Light  -->
+        
+      <a-light type="point" intensity="0.1" position="0 2 0" color ="#ffffff"></a-light>
+      <a-light type="point" intensity="0.1" position="0 2 2" color ="#ffffff"></a-light>
+      <a-light type="hemisphere" color="#ffffff" intensity="0.4"></a-light>
+      
+     
+      <!-- Camera -->
+      <a-entity movement-controls="fly: false" position="0 0 6">
+        <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
+        <a-entity cursor="rayOrigin:mouse"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+
+      <!-- Reference sphere-->
+       <a-sphere position="0 0 0" radius="0.2" color="#EF2D5E" visible="false"></a-sphere>
+      
+      
+        
+      
+      <!-- ********************************* -->
+      <!--        Interactividad       -->        
+      <!-- ********************************* -->
+      
+      
+
+      
+      <!--Imagen de fondo Purple Gain -->
+      
+      <a-box src="https://cdn.glitch.global/0d13447f-a502-45a9-8997-f3d16bc3f7c5/Final-VideosPurpleGain.png?v=1722521227378" depth="4" height="2.12" width="0.01" position="6.8 1.5 0.2" rotation="0 90 0"
+             animation="property: opacity; to: 0; loop: false; startEvents: click; dur: 500"></a-box>
+      
+            
+       
+       
+      <!-- ********************************* -->
+      <!--        Carteles       -->        
+      <!-- ********************************* -->
+       
+  
+   
+      
+       
+       
+  <!-- Script for click and scale each item -->
+  <script>
+    AFRAME.registerComponent('scale-on-click', {
+      schema: {
+        scale: {type: 'vec3', default: {x: 6, y: 6, z: 6}}  // Valor de escala por defecto
+      },
+      init: function () {
+        var el = this.el;  // El elemento en el que se aplica el componente
+        el.addEventListener('click', function () {
+          // Cambiar la escala del elemento al hacer clic
+          el.setAttribute('scale', el.getAttribute('scale').x === 0.4 ? {x: 1, y: 1, z: 1} : {x: 0.4, y: 0.4, z: 0.4});
+        });
+      }
+    });
+
+    // Asignar el componente a cada elemento por separado
+    document.querySelector('#aaa').setAttribute('scale-on-click', '');
+    document.querySelector('#bbb').setAttribute('scale-on-click', '');
+    document.querySelector('#ccc').setAttribute('scale-on-click', '');
+    document.querySelector('#ddd').setAttribute('scale-on-click', '');
+
+  </script>
+      
+           
+      
+     
+
+      <!-- ********************************* -->
+      <!--        Assets Enviro       -->        
+      <!-- ********************************* -->
+      
+
+      
+      <!-- Reactor Blockout -->
+            
+      <a-assets>
+        <a-asset-item id="reactorblockout" src=""></a-asset-item>
+      </a-assets>
+   
+
+      <a-entity gltf-model="#reactorblockout" scale="1 1 1" position="0 0 0"></a-entity>
+       
+
+      
+      
+ 
+
+    </a-scene>
+  </body>
+
+</html>
